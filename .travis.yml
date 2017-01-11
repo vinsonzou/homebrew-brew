@@ -1,0 +1,35 @@
+sudo: required
+
+language: c
+
+os: osx
+
+compiler:
+  - gcc
+  - clang
+
+services:
+  - memcached
+
+before_install:
+  - brew update
+  - brew install cpanm
+  - brew tap openresty/nginx && brew install openresty --with-debug
+
+install:
+  - git clone https://github.com/openresty/test-nginx.git
+  - git clone https://github.com/openresty/nginx-devel-utils.git
+  - git clone https://github.com/openresty/mockeagain.git
+  - git clone https://github.com/openresty/lua-resty-core.git
+
+script:
+  - cd test-nginx/ && sudo cpanm . && cd ..
+  - cd mockeagain/ && make CC=$CC -j3 && cd ..
+  - export PATH=$PWD/nginx-devel-utils:$PATH
+  - export LD_PRELOAD=$PWD/mockeagain/mockeagain.so
+  - export LD_LIBRARY_PATH=$PWD/mockeagain:$LD_LIBRARY_PATH
+  - export TEST_NGINX_RESOLVER=8.8.4.4
+  - ln -s /usr/local/bin/openresty /usr/local/bin/nginx
+  - chmod +x fix_testcase.sh && ./fix_testcase.sh
+  - cd lua-resty-core/
+  - prove -r t
