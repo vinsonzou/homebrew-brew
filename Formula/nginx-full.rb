@@ -1,47 +1,50 @@
 class NginxFull < Formula
   desc "HTTP(S) server, reverse proxy, IMAP/POP3 proxy server"
   homepage "https://nginx.org/"
-  url "https://nginx.org/download/nginx-1.10.2.tar.gz"
-  sha256 "1045ac4987a396e2fa5d0011daf8987b612dd2f05181b67507da68cbe7d765c2"
+  url "https://nginx.org/download/nginx-1.12.2.tar.gz"
+  sha256 "305f379da1d5fb5aefa79e45c829852ca6983c7cd2a79328f8e084a324cf0416"
   head "http://hg.nginx.org/nginx/", :using => :hg
 
   devel do
-    url "https://nginx.org/download/nginx-1.11.8.tar.gz"
-    sha256 "53aef3715d79015314c2dcb18f2b185a0c64368cc01b30bdf0737a215f666b34"
+    url "https://nginx.org/download/nginx-1.13.7.tar.gz"
+    sha256 "beb732bc7da80948c43fd0bf94940a21a21b1c1ddfba0bd99a4b88e026220f5c"
   end
 
   conflicts_with "nginx", :because => "nginx-full symlink with the name for compatibility with nginx"
 
   def self.core_modules
     [
-      ["addition",         "http_addition_module",     "Build with HTTP Addition support"],
-      ["auth-req",         "http_auth_request_module", "Build with HTTP Auth Request support"],
-      ["debug",            "debug",                    "Build with debug log"],
-      ["degredation",      "http_degradation_module",  "Build with HTTP Degredation support"],
-      ["flv",              "http_flv_module",          "Build with FLV support"],
-      ["geoip",            "http_geoip_module",        "Build with HTTP GeoIP support"],
-      ["google-perftools", "google_perftools_module",  "Build with Google Performance Tools support"],
-      ["gunzip",           "http_gunzip_module",       "Build with Gunzip support"],
-      ["gzip-static",      "http_gzip_static_module",  "Build with Gzip static support"],
-      ["http2",            "http_v2_module",           "Build with HTTP/2 support"],
-      ["image-filter",     "http_image_filter_module", "Build with Image Filter support"],
-      ["mail",             "mail",                     "Build with Mail support"],
-      ["mp4",              "http_mp4_module",          "Build with MP4 support"],
-      ["no-pool-nginx",    nil,                        "Build without nginx-pool (valgrind debug memory)"],
-      ["passenger",        nil,                        "Build with Phusion Passenger support"],
-      ["pcre-jit",         "pcre-jit",                 "Build with JIT in PCRE"],
-      ["perl",             "http_perl_module",         "Build with Perl support"],
-      ["random-index",     "http_random_index_module", "Build with Random Index support"],
-      ["realip",           "http_realip_module",       "Build with Real IP support"],
-      ["secure-link",      "http_secure_link_module",  "Build with Secure Link support"],
-      ["slice",            "http_slice_module",        "Build with Slice support"],
-      ["status",           "http_stub_status_module",  "Build with Stub Status support"],
-      ["stream",           "stream",                   "Build with TCP load balancing support"],
-      ["stream-geoip",     "stream_geoip_module",      "Build with Stream GeoIP support"],
-      ["stream-realip",    "stream_realip_module",     "Build with Stream RealIP support"],
-      ["sub",              "http_sub_module",          "Build with HTTP Sub support"],
-      ["webdav",           "http_dav_module",          "Build with WebDAV support"],
-      ["xslt",             "http_xslt_module",         "Build with XSLT support"],
+      ["addition",           "http_addition_module",      "Build with HTTP Addition support"],
+      ["auth-req",           "http_auth_request_module",  "Build with HTTP Auth Request support"],
+      ["debug",              "debug",                     "Build with debug log"],
+      ["degredation",        "http_degradation_module",   "Build with HTTP Degredation support"],
+      ["flv",                "http_flv_module",           "Build with FLV support"],
+      ["geoip",              "http_geoip_module",         "Build with HTTP GeoIP support"],
+      ["google-perftools",   "google_perftools_module",   "Build with Google Performance Tools support"],
+      ["gunzip",             "http_gunzip_module",        "Build with Gunzip support"],
+      ["gzip-static",        "http_gzip_static_module",   "Build with Gzip static support"],
+      ["http2",              "http_v2_module",            "Build with HTTP/2 support"],
+      ["image-filter",       "http_image_filter_module",  "Build with Image Filter support"],
+      ["mail",               "mail",                      "Build with Mail support"],
+      ["mail-ssl",           "mail_ssl_module",           "Build with Mail SSL/TLS support"],
+      ["mp4",                "http_mp4_module",           "Build with MP4 support"],
+      ["no-pool-nginx",      nil,                         "Build without nginx-pool (valgrind debug memory)"],
+      ["passenger",          nil,                         "Build with Phusion Passenger support"],
+      ["pcre-jit",           "pcre-jit",                  "Build with JIT in PCRE"],
+      ["perl",               "http_perl_module",          "Build with Perl support"],
+      ["random-index",       "http_random_index_module",  "Build with Random Index support"],
+      ["realip",             "http_realip_module",        "Build with Real IP support"],
+      ["secure-link",        "http_secure_link_module",   "Build with Secure Link support"],
+      ["slice",              "http_slice_module",         "Build with Slice support"],
+      ["status",             "http_stub_status_module",   "Build with Stub Status support"],
+      ["stream",             "stream",                    "Build with TCP/UDP proxy support"],
+      ["stream-ssl",         "stream_ssl_module",         "Build with Stream SSL/TLS support"],
+      ["stream-ssl-preread", "stream_ssl_preread_module", "Build with Stream without terminating SSL/TLS support"],
+      ["stream-geoip",       "stream_geoip_module",       "Build with Stream GeoIP support"],
+      ["stream-realip",      "stream_realip_module",      "Build with Stream RealIP support"],
+      ["sub",                "http_sub_module",           "Build with HTTP Sub support"],
+      ["webdav",             "http_dav_module",           "Build with WebDAV support"],
+      ["xslt",               "http_xslt_module",          "Build with XSLT support"],
     ]
   end
 
@@ -83,6 +86,7 @@ class NginxFull < Formula
       "nchan" => "Build with Nchan support",
       "notice" => "Build with HTTP Notice support",
       "php-session" => "Build with Parse PHP Sessions support",
+      "tarantool" => "Build with Tarantool upstream support",
       "push-stream" => "Build with HTTP Push Stream support",
       "realtime-req" => "Build with Realtime Request support",
       "redis" => "Build with Redis support",
@@ -105,19 +109,24 @@ class NginxFull < Formula
     }
   end
 
+  option 'with-homebrew-libressl', 'Include LibreSSL instead of OpenSSL via Homebrew'
+
   depends_on "pcre"
   depends_on "passenger" => :optional
   depends_on "geoip" => :optional
-  depends_on "openssl" => :recommended
-  depends_on "libressl" => :optional
-  depends_on "libzip" if build.with? "unzip"
-  depends_on "libxml2" if build.with? "xslt"
-  depends_on "libxslt" if build.with? "xslt"
-  depends_on "gd" if build.with? "image-filter"
-  depends_on "valgrind" if build.with? "no-pool-nginx"
-  depends_on "icu4c" if build.with? "xsltproc-module"
-  depends_on "libxml2" if build.with? "xsltproc-module"
-  depends_on "libxslt" if build.with? "xsltproc-module"
+  if build.with?("homebrew-libressl")
+    depends_on "libressl"
+  else
+    depends_on "openssl"
+  end
+  depends_on "libzip" if build.with?("unzip")
+  depends_on "libxml2" if build.with?("xslt")
+  depends_on "libxslt" if build.with?("xslt")
+  depends_on "gd" if build.with?("image-filter")
+  depends_on "valgrind" if build.with?("no-pool-nginx")
+  depends_on "icu4c" if build.with?("xsltproc-module")
+  depends_on "libxml2" if build.with?("xsltproc-module")
+  depends_on "libxslt" if build.with?("xsltproc-module")
   depends_on "gperftools" => :optional
   depends_on "gd" => :optional
   depends_on "imlib2" => :optional
@@ -132,23 +141,23 @@ class NginxFull < Formula
   end
   third_party_modules.each do |name, desc|
     option "with-#{name}-module", desc
-    depends_on "#{name}-nginx-module" if build.with? "#{name}-module"
+    depends_on "#{name}-nginx-module" if build.with?("#{name}-module")
   end
 
   def patches
     patches = {}
     # https://github.com/openresty/no-pool-nginx
-    if build.with? "no-pool-nginx"
-      patches[:p2] = "https://raw.githubusercontent.com/openresty/no-pool-nginx/master/nginx-1.7.7-no_pool.patch" if build.devel?
+    if build.with?("no-pool-nginx")
+      patches[:p2] = "https://raw.githubusercontent.com/openresty/no-pool-nginx/master/nginx-1.11.2-no_pool.patch"
     end
-    if build.with? "extended-status-module"
+    if build.with?("extended-status-module")
       patches[:p1] = "https://raw.githubusercontent.com/nginx-modules/ngx_http_extended_status_module/master/extended_status-1.10.1.patch"
     end
-    if build.with? "ustats-module"
+    if build.with?("ustats-module")
       patches[:p1] = "https://raw.githubusercontent.com/nginx-modules/ngx_ustats_module/master/nginx-1.6.1.patch"
     end
-    if build.with? "tcp-proxy-module"
-      patches[:p1] = "https://raw.githubusercontent.com/yaoweibin/nginx_tcp_proxy_module/v0.4.5/tcp.patch"
+    if build.with?("tcp-proxy-module")
+      patches[:p1] = "https://raw.githubusercontent.com/yaoweibin/nginx_tcp_proxy_module/afcab76/tcp_1_8.patch"
     end
     patches
   end
@@ -166,7 +175,7 @@ class NginxFull < Formula
     end
 
     # small-light needs to run setup script
-    if build.with? "small-light-module"
+    if build.with?("small-light-module")
       small_light = Formula["small-light-nginx-module"]
       args = build.used_options.select { |option| ["with-gd", "with-imlib2"].include?(option.name) }
       origin_dir = Dir.pwd
@@ -177,7 +186,8 @@ class NginxFull < Formula
     end
 
     # mruby module needs to prepare compiling mruby
-    if build.with? "mruby-module"
+    if build.with?("mruby-module")
+      ENV["NGX_MRUBY_LDFLAGS"] = "-lcrypto"
       mruby = Formula["mruby-nginx-module"]
       origin_dir = Dir.pwd
       Dir.chdir("#{mruby.share}/#{mruby.name}")
@@ -203,26 +213,24 @@ class NginxFull < Formula
     end
 
     pcre = Formula["pcre"]
-    openssl = Formula["openssl"]
-    libressl = Formula["libressl"]
     cc_opt = "-I#{HOMEBREW_PREFIX}/include -I#{pcre.include}"
     ld_opt = "-L#{HOMEBREW_PREFIX}/lib -L#{pcre.lib}"
 
-    if build.with? "libressl"
-      cc_opt += " -I#{libressl.include}"
-      ld_opt += " -L#{libressl.lib}"
+    if build.with?("libressl")
+      cc_opt += " -I#{Formula["libressl"].include}"
+      ld_opt += " -L#{Formula["libressl"].lib}"
     else
-      cc_opt += " -I#{openssl.include}"
-      ld_opt += " -L#{openssl.lib}"
+      cc_opt += " -I#{Formula["openssl"].include}"
+      ld_opt += " -L#{Formula["openssl"].lib}"
     end
 
-    if build.with? "xsltproc-module"
+    if build.with?("xsltproc-module")
       icu = Formula["icu4c"]
       cc_opt += " -I#{icu.opt_include}"
       ld_opt += " -L#{icu.opt_lib}"
     end
 
-    cc_opt += " -I#{Formula["libzip"].opt_lib}/libzip/include" if build.with? "unzip"
+    cc_opt += " -I#{Formula["libzip"].opt_lib}/libzip/include" if build.with?("unzip")
 
     args = %W[
       --prefix=#{prefix}
@@ -256,19 +264,19 @@ class NginxFull < Formula
 
     # Third Party Modules
     self.class.third_party_modules.each_key do |name|
-      if build.with? "#{name}-module"
+      if build.with?("#{name}-module")
         args << "--add-module=#{HOMEBREW_PREFIX}/share/#{name}-nginx-module"
       end
     end
 
     # Passenger
-    if build.with? "passenger"
+    if build.with?("passenger")
       nginx_ext = `#{Formula["passenger"].opt_bin}/passenger-config --nginx-addon-dir`.chomp
       args << "--add-module=#{nginx_ext}"
     end
 
     # Install LuaJit
-    if build.with? "lua-module"
+    if build.with?("lua-module")
       luajit_path = `brew --prefix luajit`.chomp
       ENV["LUAJIT_LIB"] = "#{luajit_path}/lib"
       ENV["LUAJIT_INC"] = "#{luajit_path}/include/luajit-2.0"
@@ -346,7 +354,7 @@ class NginxFull < Formula
     Waiting on exit process
      $ nginx -s quit
     EOS
-    s << "\n" << passenger_caveats if build.with? "passenger"
+    s << "\n" << passenger_caveats if build.with?("passenger")
     s
   end
 

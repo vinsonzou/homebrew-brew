@@ -1,14 +1,18 @@
 class Openresty < Formula
   desc "Scalable Web Platform by Extending NGINX with Lua"
-  homepage "http://openresty.org"
-  VERSION = "1.11.2.2".freeze
+  homepage "https://openresty.org"
+  VERSION = "1.13.6.1".freeze
   url "https://openresty.org/download/openresty-#{VERSION}.tar.gz"
-  sha256 "7f9ca62cfa1e4aedf29df9169aed0395fd1b90de254139996e554367db4d5a01"
+  sha256 "d1246e6cfa81098eea56fb88693e980d3e6b8752afae686fab271519b81d696b"
 
   option "with-debug", "Compile with support for debug logging but without proper gdb debugging symbols"
+  option "with-postgresql", "Compile with ngx_http_postgres_module"
+  option "with-iconv", "Compile with ngx_http_iconv_module"
+  option "with-slice", "Compile with ngx_http_slice_module"
 
   depends_on "pcre"
-  depends_on "homebrew/nginx/openresty-openssl"
+  depends_on "postgresql" => :optional
+  depends_on "denji/nginx/openresty-openssl"
   depends_on "geoip"
 
   skip_clean "site"
@@ -23,6 +27,11 @@ class Openresty < Formula
 
     args = %W[
       --prefix=#{prefix}
+      --pid-path=#{var}/run/openresty.pid
+      --lock-path=#{var}/run/openresty.lock
+      --conf-path=#{etc}/openresty/nginx.conf
+      --http-log-path=#{var}/log/nginx/access.log
+      --error-log-path=#{var}/log/nginx/error.log
       --with-cc-opt=#{cc_opt}
       --with-ld-opt=#{ld_opt}
       --with-pcre-jit
@@ -53,6 +62,10 @@ class Openresty < Formula
       --with-luajit-xcflags=-DLUAJIT_NUMMODE=2\ -DLUAJIT_ENABLE_LUA52COMPAT
       --with-dtrace-probes
     ]
+
+    args << "--with-http_postgres_module" if build.with? "postgresql"
+    args << "--with-http_iconv_module" if build.with? "iconv"
+    args << "--with-http_slice_module" if build.with? "slice"
 
     if build.with? "debug"
       args << "--with-debug"

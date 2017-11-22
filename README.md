@@ -4,9 +4,9 @@ This tap is designed specifically for a custom build of NGINX with more module o
 
 ## How do I install these formule (NGINX Modules)?
 Once the tap is installed, you can install `nginx-full`
-with optional [additional modules](http://brew.sh/homebrew-nginx/#modules):
+with optional [additional modules](https://brew.sh/homebrew-nginx/#modules):
 
-    brew tap homebrew/nginx
+    brew tap denji/nginx
     brew install nginx-full --with-upload-module
 
 For a list of available configuration options run:
@@ -24,7 +24,7 @@ You are free to install this version alongside a current install of NGINX from `
 `brew help`, `man brew` or check [Homebrew's documentation](https://github.com/Homebrew/brew/blob/master/docs/README.md).
 
 ## Contributing
-Please see the [contributing guide](https://github.com/Homebrew/homebrew-nginx/blob/master/.github/CONTRIBUTING.md).
+Please see the [contributing guide](https://github.com/denji/homebrew-nginx/blob/master/.github/CONTRIBUTING.md).
 
 ## How to submit a new formula
 * Fork this repository on GitHub.
