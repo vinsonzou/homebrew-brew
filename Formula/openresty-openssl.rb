@@ -1,14 +1,12 @@
 class OpenrestyOpenssl < Formula
   desc "This OpenSSL library build is specifically for OpenResty uses"
   homepage "https://www.openssl.org/"
-  keg_only "Only for use with OpenResty"
   VERSION = "1.0.2k".freeze
   revision 1
 
   stable do
     url "https://www.openssl.org/source/openssl-#{VERSION}.tar.gz"
     mirror "https://dl.bintray.com/homebrew/mirror/openssl-1#{VERSION}.tar.gz"
-    mirror "https://www.mirrorservice.org/sites/ftp.openssl.org/source/openssl-#{VERSION}.tar.gz"
     sha256 "6b3977c61f2aedf0f96367dcfb5c6e578cf37e7b8d913b4ecb6643c3cb88d8c0"
 
     patch do
@@ -16,6 +14,8 @@ class OpenrestyOpenssl < Formula
       sha256 "6d6e02c21769784b106b62a146bfbfeac54884e23520c8dd29b74f3e1348d4a1"
     end
   end
+
+  keg_only "only for use with OpenResty"
 
   def install
     # OpenSSL will prefer the PERL environment variable if set over $PATH

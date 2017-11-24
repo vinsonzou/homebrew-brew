@@ -12,7 +12,7 @@ class Openresty < Formula
 
   depends_on "pcre"
   depends_on "postgresql" => :optional
-  depends_on "openresty/nginx/openresty-openssl"
+  depends_on "openresty/brew/openresty-openssl"
   depends_on "geoip"
 
   skip_clean "site"
@@ -67,9 +67,7 @@ class Openresty < Formula
     args << "--with-http_iconv_module" if build.with? "iconv"
     args << "--with-http_slice_module" if build.with? "slice"
 
-    if build.with? "debug"
-      args << "--with-debug"
-    end
+    args << "--with-debug" if build.with? "debug"
 
     system "./configure", *args
 
