@@ -1,3 +1,5 @@
+require 'etc'
+
 class Openresty < Formula
   desc "Scalable Web Platform by Extending NGINX with Lua"
   homepage "https://openresty.org"
@@ -5,7 +7,6 @@ class Openresty < Formula
   url "https://openresty.org/download/openresty-#{VERSION}.tar.gz"
   sha256 "436b4e84d547a97a18cf7a2522daf819da8087b188468946b5a89c0dd1ca5d16"
 
-  option "with-debug", "Compile with support for debug logging"
   option "with-postgresql", "Compile with ngx_http_postgres_module"
   option "with-iconv", "Compile with ngx_http_iconv_module"
   option "with-slice", "Compile with ngx_http_slice_module"
@@ -68,11 +69,7 @@ class Openresty < Formula
     args << "--with-http_iconv_module" if build.with? "iconv"
     args << "--with-http_slice_module" if build.with? "slice"
 
-    args << "--with-debug" if build.with? "debug"
-
-    ncpus = `nproc`.strip!
-    j_arg = "-j#{ncpus}"
-    args << j_arg
+    args << "-j#{Etc.nprocessors}"
 
     system "./configure", *args
 
