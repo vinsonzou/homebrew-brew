@@ -1,13 +1,13 @@
 class OpenrestyOpenssl < Formula
   desc "This OpenSSL library build is specifically for OpenResty uses"
   homepage "https://www.openssl.org/"
-  VERSION = "1.1.0j".freeze
+  VERSION = "1.1.0k".freeze
   revision 1
 
   stable do
     url "https://www.openssl.org/source/openssl-#{VERSION}.tar.gz"
     mirror "https://dl.bintray.com/homebrew/mirror/openssl-1#{VERSION}.tar.gz"
-    sha256 "31bec6c203ce1a8e93d5994f4ed304c63ccf07676118b6634edded12ad1b3246"
+    sha256 "efa4965f4f773574d6cbda1cf874dbbe455ab1c0d4f906115f867d30444470b1"
 
     patch do
       url "https://raw.githubusercontent.com/openresty/openresty/master/patches/openssl-1.1.0d-sess_set_get_cb_yield.patch"
