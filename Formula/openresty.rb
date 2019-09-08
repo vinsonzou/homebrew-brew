@@ -70,6 +70,10 @@ class Openresty < Formula
 
     args << "--with-debug" if build.with? "debug"
 
+    ncpus = `nproc`.strip!
+    j_arg = "-j#{ncpus}"
+    args << j_arg
+
     system "./configure", *args
 
     # Install
