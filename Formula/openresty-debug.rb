@@ -1,3 +1,5 @@
+require 'etc'
+
 class OpenrestyDebug < Formula
   desc "Scalable Web Platform by Extending NGINX with Lua"
   homepage "https://openresty.org"
@@ -25,6 +27,7 @@ class OpenrestyDebug < Formula
     ld_opt = "-L#{HOMEBREW_PREFIX}/lib -L#{Formula["pcre"].opt_lib} -L#{Formula["openresty-openssl"].opt_lib}"
 
     args = %W[
+      -j#{Etc.nprocessors}
       --prefix=#{prefix}
       --pid-path=#{var}/run/openresty.pid
       --lock-path=#{var}/run/openresty.lock

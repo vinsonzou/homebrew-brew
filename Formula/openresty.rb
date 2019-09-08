@@ -27,6 +27,7 @@ class Openresty < Formula
     ld_opt = "-L#{HOMEBREW_PREFIX}/lib -L#{Formula["pcre"].opt_lib} -L#{Formula["openresty/brew/openresty-openssl"].opt_lib}"
 
     args = %W[
+      -j#{Etc.nprocessors}
       --prefix=#{prefix}
       --pid-path=#{var}/run/openresty.pid
       --lock-path=#{var}/run/openresty.lock
@@ -68,8 +69,6 @@ class Openresty < Formula
     args << "--with-http_postgres_module" if build.with? "postgresql"
     args << "--with-http_iconv_module" if build.with? "iconv"
     args << "--with-http_slice_module" if build.with? "slice"
-
-    args << "-j#{Etc.nprocessors}"
 
     system "./configure", *args
 
