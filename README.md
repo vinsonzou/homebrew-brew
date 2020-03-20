@@ -6,19 +6,37 @@ This tap is designed specifically for a custom build of NGINX with more module o
 Once the tap is installed, you can install `nginx-full`
 with optional [additional modules](https://brew.sh/homebrew-nginx/#modules):
 
-    brew tap openresty/nginx
-    brew install nginx-full --with-upload-module
+```bash
+brew tap openresty/brew
+brew install openresty
+```
+
+There is also a debug version of openresty for hard-core developers:
+
+```bash
+brew install openresty-debug
+```
+
+If you already installed OpenResty from homebrew/nginx, please run the following command first:
+
+```bash
+brew untap homebrew/nginx
+```
 
 For a list of available configuration options run:
 
-    brew options nginx-full
-    brew info nginx-full
+```bash
+brew options openresty
+```
 
 ## What about conflicts?
+
 You are free to install this version alongside a current install of NGINX from `Homebrew/homebrew` if you wish. However, they cannot be linked at the same time. To switch between them use brew's built in linking system.
 
-    brew unlink nginx
-    brew link nginx-full
+```
+brew unlink nginx
+brew link openresty
+```
 
 ## Documentation
 `brew help`, `man brew` or check [Homebrew's documentation](https://github.com/Homebrew/brew/blob/master/docs/README.md).
