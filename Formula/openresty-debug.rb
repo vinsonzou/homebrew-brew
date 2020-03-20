@@ -4,6 +4,7 @@ class OpenrestyDebug < Formula
   desc "Scalable Web Platform by Extending NGINX with Lua"
   homepage "https://openresty.org"
   VERSION = "1.15.8.2".freeze
+  revision 2
   url "https://openresty.org/download/openresty-#{VERSION}.tar.gz"
   sha256 "436b4e84d547a97a18cf7a2522daf819da8087b188468946b5a89c0dd1ca5d16"
 
@@ -62,7 +63,7 @@ class OpenrestyDebug < Formula
       --with-http_mp4_module
       --with-http_gunzip_module
       --with-threads
-      --with-luajit-xcflags=-DLUAJIT_NUMMODE=2\ -DLUAJIT_ENABLE_LUA52COMPAT
+      --with-luajit-xcflags=-DLUAJIT_NUMMODE=2\ -DLUAJIT_ENABLE_LUA52COMPAT\ -fno-stack-check
       --with-dtrace-probes
     ]
 
