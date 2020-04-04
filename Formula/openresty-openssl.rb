@@ -6,7 +6,7 @@ class OpenrestyOpenssl < Formula
 
   stable do
     url "https://www.openssl.org/source/old/1.1.0/openssl-#{VERSION}.tar.gz"
-    #mirror "https://dl.bintray.com/homebrew/mirror/openssl-#{VERSION}.tar.gz"
+    mirror "https://openresty.org/download/openssl-#{VERSION}.tar.gz"
     sha256 "74a2f756c64fd7386a29184dc0344f4831192d61dc2481a93a4c5dd727f41148"
 
     patch do
