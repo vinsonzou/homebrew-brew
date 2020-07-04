@@ -3,10 +3,10 @@ require 'etc'
 class OpenrestyDebug < Formula
   desc "Scalable Web Platform by Extending NGINX with Lua"
   homepage "https://openresty.org"
-  VERSION = "1.15.8.3".freeze
+  VERSION = "1.17.8.1".freeze
   revision 1
   url "https://openresty.org/download/openresty-#{VERSION}.tar.gz"
-  sha256 "b68cf3aa7878db16771c96d9af9887ce11f3e96a1e5e68755637ecaff75134a8"
+  sha256 "a203fdbbc516f2eccd57272cb693e28ceb249ca858094598c8cab9a9b58ec5e5"
 
   option "with-postgresql", "Compile with ngx_http_postgres_module"
   option "with-iconv", "Compile with ngx_http_iconv_module"
@@ -14,7 +14,7 @@ class OpenrestyDebug < Formula
 
   depends_on "pcre"
   depends_on "postgresql" => :optional
-  depends_on "openresty/brew/openresty-openssl"
+  depends_on "openresty/brew/openresty-openssl111"
   depends_on "geoip"
 
   skip_clean "site"
@@ -24,8 +24,8 @@ class OpenrestyDebug < Formula
 
   def install
     # Configure
-    cc_opt = "-I#{HOMEBREW_PREFIX}/include -I#{Formula["pcre"].opt_include} -I#{Formula["openresty-openssl"].opt_include}"
-    ld_opt = "-L#{HOMEBREW_PREFIX}/lib -L#{Formula["pcre"].opt_lib} -L#{Formula["openresty-openssl"].opt_lib}"
+    cc_opt = "-I#{HOMEBREW_PREFIX}/include -I#{Formula["pcre"].opt_include} -I#{Formula["openresty-openssl111"].opt_include}"
+    ld_opt = "-L#{HOMEBREW_PREFIX}/lib -L#{Formula["pcre"].opt_lib} -L#{Formula["openresty-openssl111"].opt_lib}"
 
     args = %W[
       -j#{Etc.nprocessors}
