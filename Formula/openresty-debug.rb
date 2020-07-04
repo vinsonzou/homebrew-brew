@@ -64,7 +64,6 @@ class OpenrestyDebug < Formula
       --with-http_gunzip_module
       --with-threads
       --with-luajit-xcflags=-DLUAJIT_NUMMODE=2\ -DLUAJIT_ENABLE_LUA52COMPAT\ -fno-stack-check
-      --with-dtrace-probes
     ]
 
     args << "--with-http_postgres_module" if build.with? "postgresql"
