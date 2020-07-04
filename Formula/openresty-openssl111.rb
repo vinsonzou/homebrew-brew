@@ -1,4 +1,4 @@
-class OpenrestyOpenssl < Formula
+class OpenrestyOpenssl111 < Formula
   desc "This OpenSSL 1.1.1 library build is specifically for OpenResty uses"
   homepage "https://www.openssl.org/"
   VERSION = "1.1.1g".freeze
