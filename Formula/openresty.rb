@@ -17,6 +17,17 @@ class Openresty < Formula
   depends_on "pcre"
   depends_on "postgresql" => :optional
 
+  def self.third_party_modules
+    {
+      "lua-var" => "Build with lua-var-nginx-module support",
+    }
+  end
+
+  third_party_modules.each do |name, desc|
+    option "with-#{name}-module", desc
+    depends_on "#{name}-nginx-module" if build.with?("#{name}-module")
+  end
+
   skip_clean "site"
   skip_clean "pod"
   skip_clean "nginx"
@@ -69,6 +80,13 @@ class Openresty < Formula
     args << "--with-http_postgres_module" if build.with? "postgresql"
     args << "--with-http_iconv_module" if build.with? "iconv"
     args << "--with-http_slice_module" if build.with? "slice"
+
+    # Third Party Modules
+    self.class.third_party_modules.each_key do |name|
+      if build.with?("#{name}-module")
+        args << "--add-module=#{HOMEBREW_PREFIX}/share/#{name}-nginx-module"
+      end
+    end
 
     system "./configure", *args
 
